@@ -17,14 +17,14 @@ pico_sdk_init()
 include_directories(${CMAKE_CURRENT_LIST_DIR})
 
 add_executable(usbexperiment)
-target_sources(usbexperiment PUBLIC main.cpp hid_usb.cpp)
+target_sources(usbexperiment PUBLIC main.cpp hid_usb.cpp usb_descriptors.cpp)
 
 # Ensure TinyUSB can find tusb_config.h
 target_include_directories(usbexperiment PUBLIC ${CMAKE_CURRENT_LIST_DIR})
 
 # In addition to pico_stdlib required for common PicoSDK functionality, add dependency on tinyusb_device
 # for TinyUSB device support and tinyusb_board for the additional board support library used by the example
-target_link_libraries(usbexperiment PUBLIC pico_stdlib pico_unique_id tinyusb_host tinyusb_board)
+target_link_libraries(usbexperiment PUBLIC pico_stdlib pico_unique_id tinyusb_host tinyusb_device tinyusb_board)
 
 
 pico_add_extra_outputs(usbexperiment)
